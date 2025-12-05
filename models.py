@@ -1,0 +1,1 @@
+## Yo creo los modelos de jugador tu crea los del equipo 
