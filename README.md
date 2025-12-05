@@ -10,7 +10,7 @@ danny voy a crear otro modelo, que es historial para asociar los minutos y eso m
 
 
  Rafa ya tengo el modelo del partido, como lo pide la parte de atras de la hoja, pero entonces esto usa 3 modelos no? serian jugador, equipo y partido.
- la cosa esque hago git pull y nose si tu ves los cambios
+ la cosa esque hago git pull y nose si tu ves los cambios Rafael: No todavia no veo los cambios en el repo 
  
 vale, elproblema es que son cuatro, jugadores, partido, historial del jugador y hisorial del equipo(en si sus partidos), puedes revisarlo atras de la hoja 
 
