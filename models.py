@@ -26,3 +26,23 @@ class jugadorCreate(jugadorBase):
 
 class jugadorUpdate(jugadorBase):
     pass
+
+class Equipo(EquipoBase, table=True):
+    id: int | None = Field(default = None, primary_key=True)
+    universe_id:int =Field(foreign_key = "universe.id")
+    Universe: universe = Relationship(back_populates="spiderMans")
+
+    peliculas: list["Pelicula"] = Relationship(back_populates = "spiderMans", link_model = SpiderManPeliculaLink)
+    
+class PartidoBase(SQLModel):
+    rival: str | None = Field(description= "rival")
+    Fecha: int | None = Field(description = "Fecha del Partido" )
+    GolesR: str | None = Field(description= "Goles Rival")
+    GolesA: str | None = Field(description= "Goles Mi equipo")
+
+class Partido(PartidoBase, table=True):
+    id: int | None = Field(default = None, primary_key=True)
+    universe_id:int =Field(foreign_key = "universe.id") 
+    Universe: universe = Relationship(back_populates="spiderMans")
+
+    peliculas: list["Pelicula"] = Relationship(back_populates = "spiderMans", link_model = SpiderManPeliculaLink)
