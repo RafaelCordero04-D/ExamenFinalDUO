@@ -9,6 +9,10 @@ class jugadorBase(SQLModel):
     Fecha: int | None = Field(description= "Fecha de nacimiento")
     estado: str | None = Field(description= "Estado del jugador")
     alive : bool | None = Field(description = "True = active, False= deleted", default = True)
+    nacio: str | None = Field(description = "nacionalidad del Jugador")
+    altura: float | None = Field(description = "altura del jugador")
+    pieD: str | None = Field(description = "Pie dominante")
+    posicion: str | None = Field(description = "Posicion o rol del jugador")
     img: Optional[str] = Field(default = None, description="Jugador Image")
 
 class Jugador(jugadorBase, table=True):
