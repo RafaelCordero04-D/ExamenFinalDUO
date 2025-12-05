@@ -11,7 +11,9 @@ class jugadorBase(SQLModel):
     alive : bool | None = Field(description = "True = active, False= deleted", default = True)
     img: Optional[str] = Field(default = None, description="Jugador Image")
 
-class SpiderMan(JugadorBase, table=True):
+class Jugador(jugadorBase, table=True):
     id: int | None = Field(default = None, primary_key=True)
-    universe_id:int =Field(foreign_key = "universe.id")
+    universe_id:int =Field(foreign_key = "universe.id") #Se necesita crear el equipo para estos campos abajo  y aqui 
     Universe: universe = Relationship(back_populates="spiderMans")
+
+    
