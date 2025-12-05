@@ -14,6 +14,9 @@ danny voy a crear otro modelo, que es historial para asociar los minutos y eso m
  
 vale, elproblema es que son cuatro, jugadores, partido, historial del jugador y hisorial del equipo(en si sus partidos), puedes revisarlo atras de la hoja 
 
+Rafael: No todavia no veo los cambios en el repo 
+ 
+vale, elproblema es que son cuatro, jugadores, partido, historial del jugador y hisorial del equipo(en si sus partidos), puedes revisarlo atras de la hoja 
 
 
 
