@@ -2,8 +2,9 @@
 
 Rafa ves esto?
  si 
-ya me dejo
+ahh oka 
 
  
+
 
 
