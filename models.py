@@ -16,4 +16,9 @@ class Jugador(jugadorBase, table=True):
     universe_id:int =Field(foreign_key = "universe.id") #Se necesita crear el equipo para estos campos abajo  y aqui 
     Universe: universe = Relationship(back_populates="spiderMans")
 
-    
+class jugadorCreate(jugadorBase):
+    universe_id:int = Field(foreign_key = "universe.id")
+    img: Optional[str] = None
+
+class jugadorUpdate(jugadorBase):
+    pass
