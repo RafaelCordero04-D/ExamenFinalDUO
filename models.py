@@ -3,33 +3,39 @@ from sqlmodel import SQLModel, Field, Relationship
 from typing import Optional
 
 
+class EquipoBase(SQLModel):
+    pass
+class Equipo(EquipoBase, table=True):
+    id: int | None = Field(default = None, primary_key=True)
+    universe_id:int =Field(foreign_key = "universe.id")
+    historialEugador_id:int =Field(foreign_key = "historialE.id") 
+    HistorialE: historialE = Relationship(back_populates="Equipos")
 
 
-class historialEBase(SQLModel): 
-    rival: str | None = Field(description= "rival") 
-    Fecha: int | None = Field(description = "Fecha del Partido" ) 
-    GolesR: str | None = Field(description= "Goles Rival") 
+    
+class historialEBase(SQLModel):
+    rival: str | None = Field(description= "rival")
+    Fecha: int | None = Field(description = "Fecha del Partido" )
+    GolesR: str | None = Field(description= "Goles Rival")
     GolesA: str | None = Field(description= "Goles Mi equipo")
 
-class historialE(historialEBase, table=True)
+class historialE(historialEBase, table=True):
     id: int | None = Field(default = None, primary_key=True)
     universe_id:int =Field(foreign_key = "universe.id") 
-    Universe: universe = Relationship(back_populates="spiderMans")
+    equipo: list["Equipo"] = Relationship(back_populates="HistorialE")
 
 class historialECreate(historialEBase):
-    universe_id:int = Field(foreign_key = "universe.id")
-    img: Optional[str] = None
+    pass
 
 class historialEUpdate(historialEBase):
     pass
-
 
 class historialJBase(SQLModel):
     minutoE: str | None = Field(description= "minuto de Entrada del Jugador") 
     goles: int | None = Field(description = "goles del jugador" ) 
     targetas: str | None = Field(description= "targetas al jugador") 
 
-class historialJ(historialJBase, table=True)
+class historialJ(historialJBase, table=True):
     id: int | None = Field(default = None, primary_key=True)
     jugador: list["Jugador"] = Relationship(back_populates="HistorialJ")
 
