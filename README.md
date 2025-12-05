@@ -1,4 +1,5 @@
 ﻿# ExamenFinalDUO
+LISTO RECIBI TU CODIGO POR AQUI 
 
 Rafa ves esto?
  si 
@@ -38,5 +39,6 @@ class Partido(PartidoBase, table=True):
     Universe: universe = Relationship(back_populates="spiderMans")
 
     peliculas: list["Pelicula"] = Relationship(back_populates = "spiderMans", link_model = SpiderManPeliculaLink)
+
 
 
