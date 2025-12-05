@@ -1,42 +1,13 @@
-from fastapi import FastAPI, UploadFile, File, Form, Request, HTTPException
-from contextlib import asynccontextmanager
-from fastapi.staticfiles import StaticFiles
-from fastapi.templating import Jinja2Templates
-from fastapi.responses import HTMLResponse
+from fastapi import FastAPI
+from sqlmodel import SQLModel
+from db import engine
+import jugador
+import router_producto
+from TiendaDb import create_tables
+app = FastAPI(lefespan = create_tables, tittle="Sistema de Gestión de equipo")
 
-import Spiderman
-import universe
-import pelicula
-import restore
-from db import create_tables
-
-
-@asynccontextmanager
-async def lifespan(app: FastAPI):
-    await create_tables(app)
-    yield
-app = FastAPI(lifespan= lifespan, title="Spiderman API")
-
-app.mount("/TemplatesHTML", StaticFiles(directory="TemplatesHTML"), name="TemplatesHTML")
-app.include_router(Spiderman.router, tags=["SpiderMan"], prefix="/SpiderMans")
-app.include_router(universe.router, tags=["universe"], prefix="/universes")
-app.include_router(pelicula.router, tags=["pelicula"], prefix="/peliculas")
-app.include_router(restore.router, tags=["restore"], prefix="/restore")
-
-app.mount("/estilos", StaticFiles(directory="estilos"), name="estilos")
-
-Templates = Jinja2Templates(directory="TemplatesHTML")
-
-app.mount("/static", StaticFiles(directory="static"), name="static")
-
-@app.get("/", response_class=HTMLResponse)
-async def root(request: Request):
-    return Templates.TemplateResponse("index.html", {"request": request})
-
-@app.get("/hello/{name}")
-async def say_hello(name: str):
-    return {"message": f"Hello {name}"}
-
-@app.get("/nombre/{name}")
-async def say_yourName(name: str):
-    return {"presentation": f"Mi nombre es {name}"}
+@app.on_event("startup")
+def on_startup():
+    SQLModel.metadata.create_all(engine)
+app.include_router(router_categoria.router, tags=["categoria"], prefix="/categoria")
+app.include_router(router_producto.router, tags=["producto"], prefix="/producto")
